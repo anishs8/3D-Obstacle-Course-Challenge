@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    public float speed = 5.0f;
+    public float horizontalInput;
+    public float forwardInput;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Get input from A/D or Left/Right arrows and W/S or Up/Down arrows
+        horizontalInput = Input.GetAxis("Horizontal");
+        forwardInput = Input.GetAxis("Vertical");
+
+        // Move the sphere forward and backward
+        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
         
+        // Move the sphere left and right sideways
+        transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
     }
 }
